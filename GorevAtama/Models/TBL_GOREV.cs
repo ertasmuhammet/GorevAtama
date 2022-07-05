@@ -11,11 +11,14 @@ namespace GorevAtama.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TBL_GOREV
     {
         public int ID { get; set; }
         public string AD { get; set; }
+        
+        [Range( 0,15, ErrorMessage = "Can only be between 0 .. 15")]
         public int ZORLUK { get; set; }
         public int PERSONELID { get; set; }
     

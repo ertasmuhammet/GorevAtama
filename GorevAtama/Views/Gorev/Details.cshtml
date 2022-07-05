@@ -1,0 +1,43 @@
+﻿@model GorevAtama.Models.TBL_GOREV
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TBL_GOREV</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZORLUK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZORLUK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TBL_PERSONEL.AD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TBL_PERSONEL.AD)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
