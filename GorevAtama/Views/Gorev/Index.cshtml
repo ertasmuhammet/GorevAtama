@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<style>
+    .table {
+        border-style:solid;
+    }
+</style>
+<h2>Mevcut Projeler</h2>
 <table class="table">
     <tr>
         <th>
@@ -36,9 +36,8 @@
             @Html.DisplayFor(modelItem => item.TBL_PERSONEL.AD)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <a href="/Gorev/Edit/@item.ID"><i class="glyphicon glyphicon-edit"></i></a> |
+            <a href="/Gorev/Delete/@item.ID"><i class="glyphicon glyphicon-trash"></i></a>
         </td>
     </tr>
 }
