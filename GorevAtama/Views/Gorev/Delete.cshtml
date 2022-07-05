@@ -4,46 +4,54 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TBL_GOREV</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AD)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AD)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ZORLUK)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ZORLUK)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TBL_PERSONEL.AD)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TBL_PERSONEL.AD)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<style>
+    .form-horizontal {
+        margin-left: 0px !important;
     }
+
+    .form-group {
+        margin-left: 0px !important;
+    }
+</style>
+
+
+<div class="form-horizontal">
+    <h3>Silmek İstediğinizden Emin misiniz?</h3>
+    <div class="form-group">
+        <div class="col-md-1">
+            <label>AD:</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AD, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-1">
+            <label>ZORLUK:</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ZORLUK, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-1">
+            <label>PERSONEL:</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TBL_PERSONEL.AD, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+    </div>
 </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a class="btn btn-primary" href="/Gorev/Index/">Geri Dön</a>
+    </div>
+}
+
