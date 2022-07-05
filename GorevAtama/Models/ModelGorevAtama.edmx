@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_NETLOGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_GOREV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZORLUK" Type="int" Nullable="false" />
+          <Property Name="PERSONELID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_PERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SOYAD" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TBL_GOREV_TBL_PERSONEL">
+          <End Role="TBL_PERSONEL" Type="Self.TBL_PERSONEL" Multiplicity="1" />
+          <End Role="TBL_GOREV" Type="Self.TBL_GOREV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_PERSONEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_GOREV">
+              <PropertyRef Name="PERSONELID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_NETLOGModelStoreContainer">
+          <EntitySet Name="TBL_GOREV" EntityType="Self.TBL_GOREV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PERSONEL" EntityType="Self.TBL_PERSONEL" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_GOREV_TBL_PERSONEL" Association="Self.FK_TBL_GOREV_TBL_PERSONEL">
+            <End Role="TBL_PERSONEL" EntitySet="TBL_PERSONEL" />
+            <End Role="TBL_GOREV" EntitySet="TBL_GOREV" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_NETLOGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_GOREV">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZORLUK" Type="Int32" Nullable="false" />
+          <Property Name="PERSONELID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBL_PERSONEL" Relationship="Self.FK_TBL_GOREV_TBL_PERSONEL" FromRole="TBL_GOREV" ToRole="TBL_PERSONEL" />
+        </EntityType>
+        <EntityType Name="TBL_PERSONEL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TBL_GOREV" Relationship="Self.FK_TBL_GOREV_TBL_PERSONEL" FromRole="TBL_PERSONEL" ToRole="TBL_GOREV" />
+        </EntityType>
+        <Association Name="FK_TBL_GOREV_TBL_PERSONEL">
+          <End Role="TBL_PERSONEL" Type="Self.TBL_PERSONEL" Multiplicity="1" />
+          <End Role="TBL_GOREV" Type="Self.TBL_GOREV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_PERSONEL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBL_GOREV">
+              <PropertyRef Name="PERSONELID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_NETLOGEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_GOREV" EntityType="Self.TBL_GOREV" />
+          <EntitySet Name="TBL_PERSONEL" EntityType="Self.TBL_PERSONEL" />
+          <AssociationSet Name="FK_TBL_GOREV_TBL_PERSONEL" Association="Self.FK_TBL_GOREV_TBL_PERSONEL">
+            <End Role="TBL_PERSONEL" EntitySet="TBL_PERSONEL" />
+            <End Role="TBL_GOREV" EntitySet="TBL_GOREV" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_NETLOGModelStoreContainer" CdmEntityContainer="DB_NETLOGEntities">
+          <EntitySetMapping Name="TBL_GOREV">
+            <EntityTypeMapping TypeName="DB_NETLOGModel.TBL_GOREV">
+              <MappingFragment StoreEntitySet="TBL_GOREV">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="ZORLUK" ColumnName="ZORLUK" />
+                <ScalarProperty Name="PERSONELID" ColumnName="PERSONELID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_PERSONEL">
+            <EntityTypeMapping TypeName="DB_NETLOGModel.TBL_PERSONEL">
+              <MappingFragment StoreEntitySet="TBL_PERSONEL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
