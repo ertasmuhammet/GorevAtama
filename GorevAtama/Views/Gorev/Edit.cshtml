@@ -17,7 +17,8 @@
 
         <div class="form-group">
             <div class="col-md-1" style="float:left; margin-right:5px;">
-                @Html.LabelFor(model => model.AD, htmlAttributes: new { @class = "control-label col-md-1" })
+                @*@Html.LabelFor(model => model.AD, htmlAttributes: new { @class = "control-label col-md-1" })*@
+                <label>AD:</label>
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AD, new { htmlAttributes = new { @class = "form-control" } })
@@ -27,7 +28,8 @@
 
         <div class="form-group">
             <div class="col-md-1" style="float: left; margin-right: 5px;">
-                @Html.LabelFor(model => model.ZORLUK, htmlAttributes: new { @class = "control-label col-md-1" })
+                @*@Html.LabelFor(model => model.ZORLUK, htmlAttributes: new { @class = "control-label col-md-1" })*@
+                <label>ZORLUK:</label>
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ZORLUK, new { htmlAttributes = new { @class = "form-control" } })
@@ -37,7 +39,8 @@
 
         <div class="form-group">
             <div class="col-md-1" style="float: left; margin-right: 5px;">
-                @Html.LabelFor(model => model.PERSONELID, "PERSONELID", htmlAttributes: new { @class = "control-label col-md-1" })
+                @*@Html.LabelFor(model => model.PERSONELID, "PERSONELID", htmlAttributes: new { @class = "control-label col-md-1" })*@
+                <label>PERSONELID:</label>
             </div>
             <div class="col-md-10">
                 @Html.DropDownList("PERSONELID", null, htmlAttributes: new { @class = "form-control" })
