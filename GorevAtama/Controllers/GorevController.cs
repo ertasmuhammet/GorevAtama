@@ -29,8 +29,8 @@ namespace GorevAtama.Controllers
             Random random = new Random();
             List<TBL_PERSONEL> personel = new List<TBL_PERSONEL>();
             personel = db.TBL_PERSONEL.ToList();
-            int index = random.Next(1, id.Count + 1);
-            var x = personel.ElementAt(id[index - 1]);
+            int index = random.Next(0,id.Count-1);
+            var x = personel.ElementAt(id[index]-1);
             return x;
         }
         public TBL_PERSONEL personelSec()
@@ -61,14 +61,7 @@ namespace GorevAtama.Controllers
                 }
 
             }
-            if (listPersonel.Count != 0)
-            {
-                calisanGetir = personelGetir(listPersonel);
-            }
-            else if (listPersonel.Count == 8)
-            {
-                calisanGetir = personelGetir();
-            }
+
             if (listPersonel.Count == 0)
             {
                 minDeger = zorlukToplam.Min();
@@ -81,6 +74,16 @@ namespace GorevAtama.Controllers
                 }
                 calisanGetir = personelGetir(listZorluk);
             }
+
+            else if (listPersonel.Count > 0 && listPersonel.Count<8)
+            {
+                calisanGetir = personelGetir(listPersonel);
+            }
+            else if (listPersonel.Count == 8)
+            {
+                calisanGetir = personelGetir();
+            }
+
             return calisanGetir;
         }
 
@@ -109,9 +112,9 @@ namespace GorevAtama.Controllers
         // GET: Gorev/Create 
         public ActionResult Create()
         {
-            
+
             var personel = personelSec();
-            ViewBag.PERSONELID = new SelectList(db.TBL_PERSONEL.Where(x => x.ID==personel.ID), "ID", "AD");
+            ViewBag.PERSONELID = new SelectList(db.TBL_PERSONEL.Where(x => x.ID == personel.ID), "ID", "AD");
             return View();
         }
 
@@ -122,7 +125,7 @@ namespace GorevAtama.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,AD,ZORLUK,PERSONELID")] TBL_GOREV tBL_GOREV)
         {
-            
+
             if (ModelState.IsValid)
             {
                 db.TBL_GOREV.Add(tBL_GOREV);
